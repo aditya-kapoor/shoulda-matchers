@@ -26,12 +26,11 @@ class WarningsSpy
 
     def relevant_warnings?(group)
       first_line = group[0]
+      first_line.start_with?("#{project_root}/lib")
+    end
 
-      if first_line.include?('travis')
-        first_line.start_with?('/home/travis/build/thoughtbot/shoulda-matchers/lib')
-      else
-        first_line.include?('shoulda-matchers')
-      end
+    def project_root
+      File.expand_path('../../..')
     end
   end
 end

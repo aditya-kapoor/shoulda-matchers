@@ -14,7 +14,7 @@ class WarningsSpy
     def partition
       @relevant_warning_groups, @irrelevant_warning_groups =
         warning_groups.partition do |group|
-          group[0].include?(search_text) && group[0].include?('/gemfiles/')
+          group[0].include?(search_text) && !group[0].include?('/gemfiles/')
         end
     end
 

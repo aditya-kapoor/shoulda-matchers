@@ -270,6 +270,12 @@ describe Shoulda::Matchers::ActiveModel::ValidateNumericalityOfMatcher do
     end
   end
 
+  context 'with strict option' do
+    it 'allows strict option' do
+      expect(validating_numericality(strict: true)).to matcher.strict
+    end
+  end
+
   context 'when the subject is stubbed' do
     it 'retains stubs on submatchers' do
       subject = define_model :example, attr: :string do

@@ -353,9 +353,18 @@ module Shoulda
           self
         end
 
+        def strict
+          @strict = true
+          self
+        end
+
         def matches?(subject)
           @subject = subject
-          submatchers_match?
+          begin
+            submatchers_match?
+          rescue ::ActiveModel::StrictValidationFailed => e
+            !!@strict
+          end
         end
 
         def description

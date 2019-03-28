@@ -52,6 +52,11 @@ describe Shoulda::Matchers::ActiveModel::ValidateNumericalityOfMatcher, type: :m
           validation_value: true,
         },
         {
+          name: :only_float,
+          validation_name: :only_float,
+          validation_value: true,
+        },
+        {
           name: :only_integer,
           validation_name: :only_integer,
           validation_value: true,
@@ -295,6 +300,15 @@ it is not nil, but this could not be proved.
         MESSAGE
 
         expect(&assertion).to fail_with_message(message)
+      end
+    end
+  end
+
+  context 'qualified with only_float' do
+    context 'and validating with only_float' do
+      it 'accepts' do
+        record = build_record_validating_numericality(only_float: true)
+        expect(record).to validate_numericality.only_float
       end
     end
   end

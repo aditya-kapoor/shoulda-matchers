@@ -335,6 +335,12 @@ module Shoulda
           @expects_strict
         end
 
+        def only_float
+          prepare_submatcher(
+            NumericalityMatchers::OnlyFloatMatcher.new(self, @attribute)
+          )
+        end
+
         def only_integer
           prepare_submatcher(
             NumericalityMatchers::OnlyIntegerMatcher.new(self, @attribute)
